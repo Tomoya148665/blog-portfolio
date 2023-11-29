@@ -1,0 +1,27 @@
+---
+import { contentfulClient } from "@lib/contentful";
+import type { Article as ArticleType } from "types/generated";
+import Layout from "@layouts/Layout.astro";
+import Singleview from "@components/media/Singleview";
+
+export async function getStaticPaths() {
+  const { items } = await contentfulClient.getEntries<ArticleType>({
+    content_type: "blogPage",
+  });
+  console.log(items);
+  const pages = items.map((item) => ({
+    params: { slug: item.fields.slug },
+    props: {
+      article: item,
+    },
+  }));
+  return pages;
+}
+
+
+const { article } = Astro.props;
+---
+
+<Layout>
+  <Singleview article={article} />
+</Layout>

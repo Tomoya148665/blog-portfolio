@@ -1,0 +1,53 @@
+{
+  "name": "@example/basics",
+  "type": "commonjs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "generate": "DOTENV_CONFIG_PATH='./.env' graphql-codegen --require dotenv/config --config graphql/codegen.yml",
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output types/contentful.d.ts"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.5",
+    "@astrojs/image": "^0.17.0",
+    "@astrojs/partytown": "^1.2.0",
+    "@astrojs/react": "^2.0.1",
+    "@astrojs/tailwind": "^3.0.0",
+    "@contentful/rich-text-html-renderer": "^16.0.2",
+    "@contentful/rich-text-react-renderer": "^15.16.2",
+    "@contentful/rich-text-types": "^16.0.2",
+    "@graphql-codegen/typescript": "^2.8.7",
+    "@graphql-codegen/typescript-operations": "^2.5.12",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@storyblok/astro": "^2.0.5",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^2.0.0",
+    "contentful": "^9.3.0",
+    "contentful-management": "^10.29.1",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "graphql": "^16.6.0",
+    "openai": "^3.2.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.7.1",
+    "tailwindcss": "^3.0.24",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.16.4",
+    "@graphql-codegen/typescript-react-query": "^4.1.0",
+    "@types/node": "^18.13.0",
+    "autoprefixer": "^10.4.13",
+    "contentful-typescript-codegen": "^3.4.0",
+    "daisyui": "^2.49.0",
+    "postcss": "^8.4.21",
+    "prettier-plugin-astro": "^0.8.1"
+  }
+}

@@ -1,0 +1,9 @@
+overwrite: true
+schema: "https://graphql.contentful.com/content/v1/spaces/${VITE_CONTENTFUL_SPACE_ID}/environments/master?access_token=${VITE_CONTENTFUL_PREVIEW_ACCESS_TOKEN}"
+documents: "./graphql/**/*.ts"
+generates:
+  types/generated.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

@@ -1,0 +1,12 @@
+---
+import { contentfulClient } from "@lib/contentful";
+import Layout from "@layouts/Layout.astro";
+import type { IArticle } from "types/contentful";
+import {FetchedArticles, FetchedCategories} from "@lib/contentful"
+import Collectview from "@components/media/Collectview"
+
+---
+
+<Layout>
+    <Collectview articles={FetchedArticles} categories={FetchedCategories}/>
+</Layout>

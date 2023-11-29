@@ -1,0 +1,90 @@
+---
+import Layout from "./Layout";
+const pathname = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>jetgee</title>
+    <link rel="icon" href="/favicon.ico" id="favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <meta name="generator" content={Astro.generator} />
+    <meta name="facebook-domain-verification" content="a79opng573jj29ywksnlcf0s1iaha4" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-6171DFRMSD"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-6171DFRMSD");
+    </script>
+
+    <!-- Partytown config -->
+    <script>
+      /** @type {import('partytown').Config | undefined} */
+      window.partytown = {
+        debug: true,
+        forward: ["fbq"],
+        resolveUrl: function(url: any) {
+          if (url.hostname === "connect.facebook.net") {
+            var proxyUrl = new URL('https://www.jetgee.com/');
+            proxyUrl.searchParams.append('url', url.href);
+            return proxyUrl;
+          }
+          return url;
+        }
+      };
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script type="text/javascript">
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '911232730098074');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=911232730098074&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body class="bg-primary">
+    <Layout pathname={pathname}>
+      <slot />
+    </Layout>
+  </body>
+</html>
+<style is:global>
+  :root {
+    --accent: 124, 58, 237;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      #da62c4 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background-color: #f6f6f6;
+  }
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+</style>
