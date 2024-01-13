@@ -24,18 +24,26 @@ const Singleview: React.FC<SingleviewProps> = ({ article }) => {
 
   const options = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
-      [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
-      [BLOCKS.HEADING_2]: (node, children) => <h2>{children}</h2>,
-      [BLOCKS.HEADING_3]: (node, children) => <h3>{children}</h3>,
-      [BLOCKS.HEADING_4]: (node, children) => <h4>{children}</h4>,
-      [BLOCKS.HEADING_5]: (node, children) => <h5>{children}</h5>,
-      [BLOCKS.HEADING_6]: (node, children) => <h6>{children}</h6>,
-      [BLOCKS.OL_LIST]: (node, children) => <ol>{children}</ol>,
-      [BLOCKS.UL_LIST]: (node, children) => <ul>{children}</ul>,
-      [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
-      [BLOCKS.QUOTE]: (node, children) => <blockquote>{children}</blockquote>,
-      [BLOCKS.HR]: () => <hr />,
+      [BLOCKS.PARAGRAPH]: (_node: any, children: ReactNode) => (
+        <p className="text-lg inline">{children}</p>
+      ),
+      [BLOCKS.HEADING_2]: (_node: any, children: ReactNode) => (
+        <h2 className="text-3xl border-l-4 border-l-primary pl-4 mt-10 mb-5">
+          {children}
+        </h2>
+      ),
+      [BLOCKS.HEADING_3]: (_node: any, children: ReactNode) => (
+        <h3 className="text-2xl mt-8">{children}</h3>
+      ),
+      [BLOCKS.UL_LIST]: (_node: any, children: ReactNode) => (
+        <ul className="list-disc list-inside">{children}</ul>
+      ),
+      [BLOCKS.LIST_ITEM]: (_node: any, children: ReactNode) => {
+        return <li className="text-lg p-2 w-full">{children}</li>;
+      },
+      [BLOCKS.OL_LIST]: (_node: any, children: ReactNode) => (
+        <ol className="list-decimal list-inside">{children}</ol>
+      ),
       [INLINES.HYPERLINK]: (node: any, children: ReactNode) => {
         return (
           <a
@@ -48,35 +56,11 @@ const Singleview: React.FC<SingleviewProps> = ({ article }) => {
           </a>
         );
       },
-      [INLINES.ENTRY_HYPERLINK]: (node, children) => (
-        <a href={`/entry/${node.data.target.sys.id}`}>{children}</a>
-      ),
-      [INLINES.ASSET_HYPERLINK]: (node, children) => (
-        <a href={node.data.target.fields.file.url}>{children}</a>
-      ),
-      [BLOCKS.EMBEDDED_ASSET]: node => {
-        return (
-          <img
-            src={node.data.target.fields.file.url}
-            alt={
-              node.data.target.fields.description ||
-              node.data.target.fields.title
-            }
-          />
-        );
-      },
-      [BLOCKS.EMBEDDED_ENTRY]: node => {
-        // This assumes that `contentType` is available in your embedded entry node
-        const contentType = node.data.target.sys.contentType.sys.id;
-
-        switch (contentType) {
-          case "blogPage": // or 'blogPost', or whatever your content type ID is
-            // Using the fields directly might depend on the exact structure of your `node.data.target.fields`
-            return <EmbeddedArticle {...node.data.target.fields} />;
-          default:
-            console.warn("Unhandled content type:", contentType);
-            return null;
-        }
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const src = "https:" + node.data.target.fields.file.url;
+        const height = node.data.target.fields.file.details.height;
+        const width = node.data.target.fields.file.details.width;
+        return <img src={src} style={{ width: "100%", height: "auto" }} />;
       },
     },
   };

@@ -16,7 +16,7 @@ const ArticleContainer = ({ text, text1, text2, title, date, image, body }) => {
           <img
             className="relative w-[16.5px] h-[7.36px]"
             alt=""
-            src="/media/arrow-1.svg"
+            src="../media/right-arrow.png"
           />
         </a>
         <div className="flex flex-row items-center justify-start pt-0 px-0 pb-px underline-only">
